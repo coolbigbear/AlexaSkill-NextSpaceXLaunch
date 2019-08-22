@@ -1,0 +1,6 @@
+{
+    "skillId":"amzn1.ask.skill.5fe3a1c1-8db4-4d1b-ac87-e7bfb2da7fd3",
+    "locale": "en-US",
+    "type": "text",
+    "userInput": ["spacex", "next launch", "!quit"]
+}
