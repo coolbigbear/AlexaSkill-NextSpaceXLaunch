@@ -23,7 +23,7 @@
             "codeUri": "lambda/us-east-1_SpaceXLaunches",
             "functionName": "SpaceXLaunches",
             "handler": "index.handler",
-            "revisionId": "b560493c-8b11-4f64-80ab-769aefd3f195",
+            "revisionId": "e0bdefac-c75e-4f13-83f7-b398aac44930",
             "runtime": "nodejs10.x"
           }
         ]

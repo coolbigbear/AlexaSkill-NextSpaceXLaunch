@@ -1,7 +1,8 @@
 // This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK (v2).
 // Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
 // session persistence, api calls, and more.
-const fetch = require('cross-fetch');
+
+const fetch = require('node-fetch')
 const Alexa = require('ask-sdk-core');
 
 const LaunchRequestHandler = {
@@ -9,7 +10,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome, you can say Hello or Help. Which would you like to try?';
+        const speakOutput = 'Hi, you can ask me when\'s the next spacex launch.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
@@ -22,29 +23,56 @@ const NextSpaceXLaunch = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'NextSpaceXLaunch';
     },
     async handle(handlerInput) {
-        let flight = await getSpaceXData()
-        await console.log(flight)
+        var response = await getSpaceXData();
+
+        // received this:
+        console.log("Got this response: " + String(response))
+
+        // rocket name stuff
+        var rocket_name = response[0].rocket.rocket_name
+        
+        // Payload stuff
+        var payloads_number = (response[0].rocket.second_stage.payloads).length
+        var payload_string = ''
+        if (payloads_number <= 0) {
+            payload_string = 'with no payload'
+        }
+        else if (payloads_number == 1) {
+            payload_string = `containing ${payloads_number} payload`
+        }
+        else {
+            payload_string = `containing ${payloads_number} payloads`
+        }
+
+        // Launch time and date
+        var launch_date_local = response[0].launch_date_local
+        var date = launch_date_local.split('T')[0]
+        var time = launch_date_local.split('T')[1].slice(0,-6)
+
         return handlerInput.responseBuilder
-            .speak("hello")
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
-            .getResponse();        
+                .speak(`<say-as interpret-as="date">The next launch is on ${date} at </say-as>` +
+                    `<say-as interpret-as="time">${time}.</say-as>` + ` It's the ${rocket_name} ${payload_string}`)
+                .getResponse();
     }
 };
 
+function handleErrors(response) {
+    if (!response.status == 200) {
+        throw Error(response.statusText);
+    }
+    return response;
+}
+
 function getSpaceXData() {
-    var flight_number;
-    fetch('https://api.spacexdata.com/v3/launches/upcoming')
+    return fetch('https://api.spacexdata.com/v3/launches/upcoming')
+    .then(handleErrors)
     .then(res => {
         return res.json()
     })
-    .then(smth => {
-        flight_number = smth[0].flight_number.toString()
-        return flight_number
-    })
     .catch(error => {
         console.log("Woopsie! " + error)
+        return error
     })
-    return flight_number
 }
 
 const HelpIntentHandler = {
@@ -53,7 +81,7 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'You can say hello to me! How can I help?';
+        const speakOutput = 'You can ask me when\'s the next spacex launch';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -84,25 +112,6 @@ const SessionEndedRequestHandler = {
     }
 };
 
-// The intent reflector is used for interaction model testing and debugging.
-// It will simply repeat the intent the user said. You can create custom handlers
-// for your intents by defining them above, then also adding them to the request
-// handler chain below.
-const IntentReflectorHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
-    },
-    handle(handlerInput) {
-        const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
-        const speakOutput = `You just triggered ${intentName}`;
-
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
-            .getResponse();
-    }
-};
-
 // Generic error handling to capture any syntax or routing errors. If you receive an error
 // stating the request handler chain is not found, you have not implemented a handler for
 // the intent being invoked or included it in the skill builder below.
@@ -127,46 +136,8 @@ exports.handler = Alexa.SkillBuilders.custom()
         NextSpaceXLaunch,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
-        SessionEndedRequestHandler,
-        IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
-    )
+        SessionEndedRequestHandler) 
     .addErrorHandlers(
         ErrorHandler,
     )
     .lambda();
-
-    // https.get('https://api.spacexdata.com/v3/launches/upcoming', (resp) => {
-    //     let data = '';
-    //     let mission;
-    //     let date;
-    //     let rocket_name;
-    //     let no_of_payloads;
-
-    //     console.log(`statusCode: ${resp.statusCode}`)
-
-    //     // A chunk of data has been recieved.
-    //     resp.on('data', (chunk) => {
-    //         data += chunk;
-    //     });
-
-    //     // The whole response has been received. Print out the result.
-    //     resp.on('end', () => {
-    //         data = JSON.parse(data)[0]
-
-    //         mission = data.mission_name
-    //         date = data.launch_date_local
-    //         rocket_name = data.rocket.rocket_name
-    //         no_of_payloads = data.rocket.second_stage.payloads.length
-
-    //         console.log(mission)
-    //         console.log(no_of_payloads)
-    //         console.log(rocket_name)
-    //         console.log(date)
-    //         console.log("This is what I'll say " + mission)
-    //     })
-
-    //     req.on('error', error => {
-    //         console.error('Found this error: ' + error)
-    //     })
-
-    //     req.end()
