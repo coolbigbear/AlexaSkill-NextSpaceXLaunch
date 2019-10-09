@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "spacex",
+      "invocationName": "spacex control",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
