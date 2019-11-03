@@ -16,3 +16,7 @@ Usage:
 
  - testInput.json
     Contains input used by Alexa Skills Kit (ASK) for VSCode
+
+cd in to lambda\us-east-1_SpaceXLaunches
+run 'npm install' to install dependencies.
+Then honestly don't know.
