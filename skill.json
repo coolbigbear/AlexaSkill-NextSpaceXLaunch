@@ -3,7 +3,8 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "uri": "arn:aws:lambda:us-east-1:256885192842:function:SpaceXLaunches"
+          "uri": "SpaceXLaunches",
+          "sourceDir": "lambda\\us-east-1_SpaceXLaunches"
         },
         "interfaces": []
       }
@@ -11,6 +12,7 @@
     "manifestVersion": "1.0",
     "privacyAndCompliance": {
       "locales": {
+        "en-GB": {},
         "en-US": {}
       },
       "allowsPurchases": false,
@@ -22,15 +24,38 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "name": "SpaceX Control",
-          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/b538/7ada2fd540da4b59bf3a8325b231bf3d/APP_ICON?versionId=X2c_2rxIJC0nnWmTx7jInFVUQuCGPSs3&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191009T212905Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20191009%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=f3372c60e601a6e6900aa6adaa97d15914279a337a13156ccf267955abf263d4",
-          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/ac3c/a1cc8e1769084bf99a81c7e057b5e9a4/APP_ICON_LARGE?versionId=v1UeATER5e9N1m7vA0IKBxr0ShNgMxR7&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191009T212905Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20191009%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=df9e2b7b40b550546bd903ae23619f03760e254961eb8a4e9195aec46ee94c1b",
+          "name": "Rocket Control",
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/b538/7ada2fd540da4b59bf3a8325b231bf3d/APP_ICON?versionId=X2c_2rxIJC0nnWmTx7jInFVUQuCGPSs3&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191102T173435Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20191102%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=cbbe8df983871d4ea9218f684441915f448c47047b5d6f260b7886262639caf4",
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/ac3c/a1cc8e1769084bf99a81c7e057b5e9a4/APP_ICON_LARGE?versionId=v1UeATER5e9N1m7vA0IKBxr0ShNgMxR7&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191102T173435Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20191102%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=6a47112b1fcd2d07e111347280d06371928512073631f202dfef49216ef7ef6d",
           "summary": "Discover upcoming SpaceX launches",
           "description": "Use Alexa to find the next SpaceX launch!\nAlexa will tell you the date, time, rocket type and amount of payloads.",
           "examplePhrases": [
-            "Alexa, ask spacex next launch",
-            "Alexa, ask spacex when's the next launch",
-            "Alexa, ask spacex how long till the next launch"
+            "Alexa, ask rocket control next launch",
+            "Alexa, ask rocket control when's the next launch",
+            "Alexa, ask rocket control how long till the next launch"
+          ],
+          "keywords": [
+            "spacex",
+            "falcon",
+            "elon",
+            "musk",
+            "rocket",
+            "launch",
+            "satellite",
+            "tesla",
+            "bfr"
+          ]
+        },
+        "en-GB": {
+          "name": "Rocket Control",
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/1b9b/40ec19269a3c47c6983a8bbee4fdb0f1/APP_ICON?versionId=4ewD8RkQJ4B46yi61wAu9Gm5N_yjSqM5&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191102T173435Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20191102%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=56ed5fecd68fe59e12a7908d541dc0cb98ba8abd895a74882ce43c21c5ff5673",
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/bd63/5206763f47b549cbbb8c2eb95c3e875c/APP_ICON_LARGE?versionId=akPgLowCAFssI.FMkQg_tuhh.fBVmzkO&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191102T173435Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20191102%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=6d54c4f290c1e794b2172b3fd46fbbbbfd3c01f15c31a58ec06623c1860ae646",
+          "summary": "Discover upcoming SpaceX launches",
+          "description": "Use Alexa to find the next SpaceX launch!\nAlexa will tell you the date, time, rocket type and amount of payloads.",
+          "examplePhrases": [
+            "Alexa, ask rocket control when's the next launch",
+            "Alexa, ask rocket control next launch",
+            "Alexa, ask rocket control how long till the next launch"
           ],
           "keywords": [
             "spacex",
@@ -46,7 +71,7 @@
         }
       },
       "isAvailableWorldwide": true,
-      "testingInstructions": "Alexa, ask spacex next launch",
+      "testingInstructions": "Alexa, ask rocket control when's the next launch",
       "category": "FLIGHT_FINDERS",
       "distributionCountries": []
     }

@@ -2,17 +2,34 @@
   "deploy_settings": {
     "default": {
       "skill_id": "amzn1.ask.skill.5fe3a1c1-8db4-4d1b-ac87-e7bfb2da7fd3",
-      "was_cloned": false,
+      "was_cloned": true,
       "merge": {},
       "resources": {
         "manifest": {
-          "eTag": "4389f1b4bd02f2c4713d02435bda31be"
+          "eTag": "391611a24b2062134a6f98b780092470"
         },
         "interactionModel": {
           "en-US": {
-            "eTag": "9996cdf0366cc71eaae19779f4c9bdf7"
+            "eTag": "6faf596e4f9659055fcf9a5e04390454"
+          },
+          "en-GB": {
+            "eTag": "b282815c9688aa25e73f3db958991251"
           }
-        }
+        },
+        "lambda": [
+          {
+            "arn": "arn:aws:lambda:us-east-1:256885192842:function:SpaceXLaunches",
+            "awsRegion": "us-east-1",
+            "functionName": "SpaceXLaunches",
+            "alexaUsage": [
+              "custom/default"
+            ],
+            "revisionId": "e734d7fd-f1f9-4e59-8efe-d81d5c499040",
+            "codeUri": "lambda/us-east-1_SpaceXLaunches",
+            "handler": "index.handler",
+            "runtime": "nodejs10.x"
+          }
+        ]
       }
     }
   }

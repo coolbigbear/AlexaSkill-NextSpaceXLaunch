@@ -4,6 +4,10 @@
       "invocationName": "rocket control",
       "intents": [
         {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
           "name": "AMAZON.CancelIntent",
           "samples": []
         },
@@ -13,6 +17,10 @@
         },
         {
           "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
           "samples": []
         },
         {
@@ -26,14 +34,10 @@
             "when's the next launch",
             "next launch"
           ]
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": []
         }
       ],
       "types": []
     }
   },
-  "version": "21"
+  "version": "1"
 }
