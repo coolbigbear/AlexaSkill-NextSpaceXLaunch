@@ -1,10 +1,13 @@
+## NextSpaceXLaunch
 Just a basic Alexa skill that tells you when the next SpaceX launch will be.
+
 Uses https://github.com/r-spacex/SpaceX-API
 
 Skill can be found here:
+
 https://www.amazon.co.uk/coolbigbear-Rocket-Control/dp/B07Z1NCYJ7
 
-Usage:
+## Usage
  - exampleData.json
     Contains an example of structured data from SpaceX-API
 
@@ -19,4 +22,5 @@ Usage:
 
 cd in to lambda\us-east-1_SpaceXLaunches
 run 'npm install' to install dependencies.
+
 Then honestly don't know.
